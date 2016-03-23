@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Option
+comment0.text=\n\ Write\ a\ description\ of\ class\ Option\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=text\ size\ c1\ c2\ value
+comment1.target=Option(java.lang.String,\ int,\ java.awt.Color,\ java.awt.Color,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Act\ -\ do\ whatever\ the\ Option\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment3.params=
+comment3.target=void\ startGame()
+numComments=4
