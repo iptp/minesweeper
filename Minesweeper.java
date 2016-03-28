@@ -12,9 +12,7 @@ public class Minesweeper extends World {
 
     private int fieldSize;
     private int bombs;
-
-    public int hits;
-    public boolean firstPlay;
+    private boolean firstPlay;
 
     private Block[][] field;
     /**
@@ -26,7 +24,6 @@ public class Minesweeper extends World {
         super(WIDTH, HEIGHT, CELLSIZE, false);
 
         firstPlay = true;
-        hits = 0;
         fieldSize = 10;
         bombs = 10;
 
@@ -43,5 +40,9 @@ public class Minesweeper extends World {
 
     public int getFieldSize() {
         return fieldSize;
+    }
+
+    public boolean isFirstPlay() {
+        return firstPlay;
     }
 }
