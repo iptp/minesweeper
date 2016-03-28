@@ -131,6 +131,30 @@ public class Minesweeper extends World {
             field[i][j].removeBomb();
             sortOneBomb();
         }
+        
+        /*
+        System.out.println("\nv1: ");
+        for(int k = 0; k < bombs; k++) {
+            System.out.print(String.valueOf(v1[k]) + " ");
+        }
+        
+        System.out.println("\nv2: ");
+        for(int k = 0; k < bombs; k++) {
+            System.out.print(String.valueOf(v2[k]) + " ");
+        }
+        
+        System.out.println("\n");
+        for(int k = 0; k < fieldSize; k++) {
+            for(int l = 0; l < fieldSize; l++) {
+                if(field[k][l].isBomb()) {
+                    System.out.print("X ");
+                } else {
+                    System.out.print("- ");
+                }
+            }
+            System.out.println();
+        }
+        */
     }
 
     /**
