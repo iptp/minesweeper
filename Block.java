@@ -37,11 +37,26 @@ public class Block extends Actor
     }
 
     /**
-     * Act - do whatever the test wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Check to see if the user is clicking this block and display a message
+     * on screen showing i,j from the block
      */
     public void act() {
-        // Add your action code here.
+        if(Greenfoot.mouseClicked(this)) {
+            int mouse = Greenfoot.getMouseInfo().getButton();
+            // 1 is left button
+            if(mouse == 1) {
+                // convert i and j to strings
+                String ipos = String.valueOf(this.i);
+                String jpos = String.valueOf(this.j);
+
+                //get the middle of the screen
+                int w = game.getWidth()/2;
+                int h = game.getHeight()/2;
+
+                // draw text in the middle of the screen
+                game.showText(ipos + "," + jpos, w, h);
+            }
+        }
     }
 
     /**
