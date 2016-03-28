@@ -1,6 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
-import java.awt.Color;
 
 /**
  * Block Class
@@ -18,7 +16,6 @@ public class Block extends Actor
     private Minesweeper game;
     private GreenfootImage blockImage;
     private GreenfootImage bombImage;
-    private GreenfootImage starImage;
     private boolean bomb;
     private int number;
     private int i, j;
