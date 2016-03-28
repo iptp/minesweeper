@@ -45,4 +45,8 @@ public class Minesweeper extends World {
     public boolean isFirstPlay() {
         return firstPlay;
     }
+
+    public void endFirstPlay() {
+        firstPlay = false;
+    }
 }
