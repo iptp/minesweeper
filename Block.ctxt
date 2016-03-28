@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Block
-comment0.text=\n\ Write\ a\ description\ of\ class\ Block\ here.\n\ \n\n
+comment0.text=\n\ Block\ Class\n\ \n
 comment1.params=i\ j
 comment1.target=Block(int,\ int)
 comment10.params=
