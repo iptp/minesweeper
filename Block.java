@@ -37,8 +37,8 @@ public class Block extends Actor
     }
 
     /**
-     * Check to see if the user is clicking this block and display a message
-     * on screen showing i,j from the block
+     * Check to see if the user is clicking this block and sort the bombs in
+     * the field in case it's the first play of the game.
      */
     public void act() {
         if(Greenfoot.mouseClicked(this)) {
@@ -46,10 +46,10 @@ public class Block extends Actor
             // 1 is left button
             if(mouse == 1) {
                 if(game.isFirstPlay()) {
-                    game.showText("Is first play", 0, 0);
+                    game.sortBombs(i, j);
                     game.endFirstPlay();
                 } else {
-                    game.showText("Not first play anymore", 0, 0);
+                    //to do...
                 }
             }
         }
