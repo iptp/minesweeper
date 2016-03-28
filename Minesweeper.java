@@ -6,8 +6,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * initial position of the bombs and checking if the user has won the game.
  */
 public class Minesweeper extends World {
-    public static final int WIDTH = 12;
-    public static final int HEIGHT = 15;
+    public static final int WIDTH = 10;
+    public static final int HEIGHT = 10;
     public static final int CELLSIZE = 30;
 
     private int fieldSize;
@@ -35,10 +35,10 @@ public class Minesweeper extends World {
         //instanciate field and blocks, add blocks to the world
         field = new Block[fieldSize][fieldSize];
 
-        for(int i = 0, k = 1; i < fieldSize; i++, k++) {
-            for(int j = 0, l = 4; j < fieldSize; j++, l++) {
+        for(int i = 0; i < fieldSize; i++) {
+            for(int j = 0; j < fieldSize; j++) {
                 field[i][j] = new Block(i, j);
-                addObject(field[i][j], k, l);
+                addObject(field[i][j], i, j);
             }
         }
     }
