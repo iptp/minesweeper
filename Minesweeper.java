@@ -19,7 +19,7 @@ public class Minesweeper extends World {
 
     private Block[][] field;
     /**
-     * Constructs the world and initialize the game settings WIDTH
+     * Constructs the world and initialize the game settings with
      * the default values, as well as create the matrix of Blocks
      * to be used as the field and add it to the screen.
      */
