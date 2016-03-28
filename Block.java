@@ -5,8 +5,7 @@ import java.awt.Color;
 /**
  * Write a description of class Block here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+
  */
 public class Block extends Actor
 {
@@ -21,19 +20,9 @@ public class Block extends Actor
     private int i, j;
     
     public Block(int i, int j) {
-        if(Minesweeper.difficult == 1) {
-            blockImage = new GreenfootImage("Block.png");
-            bombImage = new GreenfootImage("Bomb.png");
-            starImage = new GreenfootImage("Star.png");
-        } else if(Minesweeper.difficult == 2) {
-            blockImage = new GreenfootImage("BlockMed.png");
-            bombImage = new GreenfootImage("BombMed.png");
-            starImage = new GreenfootImage("StarMed.png");
-        } else {
-            blockImage = new GreenfootImage("BlockHard.png");
-            bombImage = new GreenfootImage("BombHard.png");
-            starImage = new GreenfootImage("StarHard.png");
-        }
+        blockImage = new GreenfootImage("Block.png");
+        bombImage = new GreenfootImage("Bomb.png");
+        starImage = new GreenfootImage("Star.png");
         
         bomb = false;
         turned = false;

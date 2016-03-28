@@ -1,17 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Minesweeper Class
  * 
- * @author (your name) 
- * @version (a version number or a date)
  */
-public class Minesweeper extends World
-{
-    public static int WIDTH = 12;
-    public static int HEIGHT = 15;
-    public static int CELLSIZE = 30;
-    public static int difficult = 1;
+public class Minesweeper extends World {
+    public static final int WIDTH = 12;
+    public static final int HEIGHT = 15;
+    public static final int CELLSIZE = 30;
     
     private int fieldSize;
     private int bombs;
@@ -22,32 +18,16 @@ public class Minesweeper extends World
     
     private Block[][] field;
     /**
-     * Constructor for objects of class MyWorld.
-     * 
+     * Constructs a new world
      */
-    public Minesweeper()
-    {  
+    public Minesweeper() {  
         super(WIDTH, HEIGHT, CELLSIZE, false);
         
         firstPlay = true;
         questions = 0;
         hits = 0;
-        switch (difficult) {
-            case 1:
-                fieldSize = 10;
-                bombs = 10;
-                break;
-            case 2:
-                fieldSize = 16;
-                bombs = 40;
-                break;
-            case 3:
-                fieldSize = 26;
-                bombs = 240;
-                break;
-            default:
-            break;
-        }
+        fieldSize = 10;
+        bombs = 10;
         
         //instanciate field and blocks, add blocks to the world
         field = new Block[fieldSize][fieldSize];
