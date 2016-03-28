@@ -45,16 +45,12 @@ public class Block extends Actor
             int mouse = Greenfoot.getMouseInfo().getButton();
             // 1 is left button
             if(mouse == 1) {
-                // convert i and j to strings
-                String ipos = String.valueOf(this.i);
-                String jpos = String.valueOf(this.j);
-
-                //get the middle of the screen
-                int w = game.getWidth()/2;
-                int h = game.getHeight()/2;
-
-                // draw text in the middle of the screen
-                game.showText(ipos + "," + jpos, w, h);
+                if(game.isFirstPlay()) {
+                    game.showText("Is first play", 0, 0);
+                    game.endFirstPlay();
+                } else {
+                    game.showText("Not first play anymore", 0, 0);
+                }
             }
         }
     }
