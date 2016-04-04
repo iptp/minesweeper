@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Block Class
@@ -47,6 +48,7 @@ public class Block extends Actor
             if(mouse == 1) {
                 if(game.isFirstPlay()) {
                     game.sortBombs(i, j);
+                    game.updateNumbers();
                     game.endFirstPlay();
                 } else {
                     //to do...
@@ -55,6 +57,13 @@ public class Block extends Actor
         }
     }
 
+    public void increaseAdjacentNumbers() {
+        List<Block> neighbours = getNeighbours(1, true, Block.class);
+        for(Block b : neighbours) {
+            b.increaseNumber();
+        }
+    }
+    
     /**
     * Get the world instance for this Block as soon as
     * it is added to the world.
@@ -78,5 +87,13 @@ public class Block extends Actor
 
     public void setBombImage() {
         setImage(bombImage);
+    }
+    
+    public int getNumber() {
+        return this.number;
+    }
+    
+    public void increaseNumber() {
+        this.number++;
     }
 }

@@ -37,6 +37,17 @@ public class Minesweeper extends World {
             }
         }
     }
+    
+    public void updateNumbers() {
+        for(int i = 0; i < fieldSize; i++) {
+            for(int j = 0; j < fieldSize; j++) {
+                if(field[i][j].isBomb()) {
+                    field[i][j].increaseAdjacentNumbers();
+                }
+            }
+        }
+        printField();
+    }
 
     public void sortBombs(int i, int j) {
         //create and fill the 2 vectors
@@ -95,7 +106,7 @@ public class Minesweeper extends World {
                 if(field[k][l].isBomb()) {
                     System.out.print("X ");
                 } else {
-                    System.out.print("- ");
+                    System.out.print(field[k][l].getNumber() + " ");
                 }
             }
             System.out.println();
