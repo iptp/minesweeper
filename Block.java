@@ -52,28 +52,7 @@ public class Block extends Actor
                     game.updateNumbers();
                     game.endFirstPlay();
                 }
-                turn();
             }
-        }
-    }
-    
-    public void turn() {
-        if(this.bomb) {
-            setImage(bombImage);
-            game.showText("Perdeu", Minesweeper.WIDTH/2, 2);
-            Greenfoot.stop();
-        }
-        else if(this.number == 0){
-            String n = String.valueOf(this.number);
-            Color bg = new Color(0, 0, 0, 0); //transparent
-            GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
-            setImage(numberImg);
-        }
-        else {
-            String n = String.valueOf(this.number);
-            Color bg = new Color(0, 0, 0, 0); //transparent
-            GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
-            setImage(numberImg);
         }
     }
 
@@ -83,7 +62,7 @@ public class Block extends Actor
             b.increaseNumber();
         }
     }
-    
+
     /**
     * Get the world instance for this Block as soon as
     * it is added to the world.
@@ -108,12 +87,16 @@ public class Block extends Actor
     public void setBombImage() {
         setImage(bombImage);
     }
-    
+
     public int getNumber() {
         return this.number;
     }
-    
+
     public void increaseNumber() {
         this.number++;
+    }
+
+    public boolean isTurned() {
+        return this.turned;
     }
 }

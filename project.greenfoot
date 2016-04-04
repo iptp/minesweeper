@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Mon Apr 04 13:54:59 JST 2016
+#Mon Apr 04 22:13:11 JST 2016
 target4.type=ClassTarget
 class.Minesweeper.superclass=greenfoot.World
 dependency3.from=Block
@@ -48,8 +48,8 @@ editor.swing.0.x=0
 class.Block.image=Block.png
 target1.naviview.expanded=true
 target2.height=50
-target5.y=130
 target4.height=50
+target5.y=130
 target5.x=10
 target1.name=Minesweeper
 target4.y=70
@@ -70,19 +70,19 @@ dependency1.type=UsesDependency
 readme.height=58
 target2.name=Block
 readme.name=@README
-package.numDependencies=2
 target4.naviview.expanded=true
+package.numDependencies=2
 target3.type=ClassTarget
 target4.width=80
 dependency2.from=Minesweeper
 dependency2.type=UsesDependency
 target5.typeParameters=
 world.lastInstantiated=Minesweeper
-mainWindow.height=467
 target2.showInterface=false
+mainWindow.height=467
 editor.swing.0.height=0
 target3.name=Option
 target3.naviview.expanded=true
-project.charset=UTF-8
 target3.width=80
+project.charset=UTF-8
 target4.showInterface=false
