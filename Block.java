@@ -19,6 +19,7 @@ public class Block extends Actor
     private GreenfootImage blockImage;
     private GreenfootImage bombImage;
     private boolean bomb;
+    private boolean turned;
     private int number;
     private int i, j;
 
@@ -31,6 +32,7 @@ public class Block extends Actor
         bombImage = new GreenfootImage("Bomb.png");
 
         bomb = false;
+        turned = false;
         number = 0;
 
         this.i = i;
@@ -56,24 +58,31 @@ public class Block extends Actor
             }
         }
     }
-    
+
     public void turn() {
         if(this.bomb) {
             setImage(bombImage);
-            game.showText("Perdeu", Minesweeper.WIDTH/2, 2);
+            game.showText("Game over!", Minesweeper.WIDTH/2, 2);
             Greenfoot.stop();
         }
-        else if(this.number == 0){
-            String n = String.valueOf(this.number);
-            Color bg = new Color(0, 0, 0, 0); //transparent
-            GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
-            setImage(numberImg);
-        }
         else {
+            //Display number
             String n = String.valueOf(this.number);
             Color bg = new Color(0, 0, 0, 0); //transparent
             GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
             setImage(numberImg);
+
+            this.turned = true;
+
+            if(this.number == 0){
+                //turn adjacent blocks
+                List<Block> neighbours = getNeighbours(1, true, Block.class);
+                for(Block b : neighbours) {
+                    if(!b.isTurned()) {
+                        b.turn();
+                    }
+                }
+            }
         }
     }
 
@@ -83,7 +92,7 @@ public class Block extends Actor
             b.increaseNumber();
         }
     }
-    
+
     /**
     * Get the world instance for this Block as soon as
     * it is added to the world.
@@ -108,12 +117,16 @@ public class Block extends Actor
     public void setBombImage() {
         setImage(bombImage);
     }
-    
+
     public int getNumber() {
         return this.number;
     }
-    
+
     public void increaseNumber() {
         this.number++;
+    }
+
+    public boolean isTurned() {
+        return this.turned;
     }
 }
