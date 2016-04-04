@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
+import java.awt.Color;
 
 /**
  * Block Class
@@ -50,10 +51,29 @@ public class Block extends Actor
                     game.sortBombs(i, j);
                     game.updateNumbers();
                     game.endFirstPlay();
-                } else {
-                    //to do...
                 }
+                turn();
             }
+        }
+    }
+    
+    public void turn() {
+        if(this.bomb) {
+            setImage(bombImage);
+            game.showText("Perdeu", Minesweeper.WIDTH/2, 2);
+            Greenfoot.stop();
+        }
+        else if(this.number == 0){
+            String n = String.valueOf(this.number);
+            Color bg = new Color(0, 0, 0, 0); //transparent
+            GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
+            setImage(numberImg);
+        }
+        else {
+            String n = String.valueOf(this.number);
+            Color bg = new Color(0, 0, 0, 0); //transparent
+            GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
+            setImage(numberImg);
         }
     }
 
