@@ -55,7 +55,10 @@ public class Block extends Actor
             }
         }
     }
-
+    
+    /**
+     * Increase the number of all adjacent blocks.
+     */
     public void increaseAdjacentNumbers() {
         List<Block> neighbours = getNeighbours(1, true, Block.class);
         for(Block b : neighbours) {

@@ -37,7 +37,11 @@ public class Minesweeper extends World {
             }
         }
     }
-    
+
+    /*
+     * Iterates over the field looking for bombs and increasing it's adjacent
+     * numbers whenever we find one bomb.
+     */
     public void updateNumbers() {
         for(int i = 0; i < fieldSize; i++) {
             for(int j = 0; j < fieldSize; j++) {
@@ -49,6 +53,10 @@ public class Minesweeper extends World {
         printField();
     }
 
+    /**
+    * Sort the location for the bombs two int[] and scrambling them to
+    * be used as positions i and j in the field matrix.
+    */
     public void sortBombs(int i, int j) {
         //create and fill the 2 vectors
         int v1[] = new int[bombs];
@@ -64,13 +72,13 @@ public class Minesweeper extends World {
             int aux = v1[r];
             v1[r] = v1[k];
             v1[k] = aux;
-            
+
             r = Greenfoot.getRandomNumber(bombs);
             aux = v2[r];
             v2[r] = v2[k];
             v2[k] = aux;
         }
-        
+
         //put bombs in their positions
         for(int k = 0; k < bombs; k++) {
             int x = v1[k];
@@ -81,6 +89,9 @@ public class Minesweeper extends World {
         printField();
     }
 
+    /*
+     * Check wether a given i,j position is a bomb and remove it.
+     */
     public void checkAndRemoveBomb(int i, int j) {
         if(field[i][j].isBomb()) {
             field[i][j].removeBomb();
@@ -98,7 +109,10 @@ public class Minesweeper extends World {
     public void endFirstPlay() {
         firstPlay = false;
     }
-    
+
+    /*
+     * Used to print the field in the console whenever we need to test the game.
+     */
     public void printField() {
         System.out.println("\n");
         for(int k = 0; k < fieldSize; k++) {
