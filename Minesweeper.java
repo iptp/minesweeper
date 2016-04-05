@@ -55,7 +55,7 @@ public class Minesweeper extends World {
     public void checkWin() {
         int unturned = countUnturned();
         if(unturned == bombs) {
-            showText("Ganhou", WIDTH/2, 2);
+            showText("You won!", WIDTH/2, 2);
             Greenfoot.stop();
         }
     }
