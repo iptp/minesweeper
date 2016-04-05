@@ -5,9 +5,9 @@ the tutorial and build the project from the ground up, please go to the [Wiki](h
 
 Feedback is much appreciated. Have fun!
 
-You can run this game directly from the browser (not Chrome :pensive:),Greenfoot Scenarios Webpage:
+You can run this game directly from the browser (not Chrome :pensive:), Greenfoot Scenarios Webpage:
 
-[Minesweeper Game][http://www.greenfoot.org/scenarios/16247]
+[Minesweeper Game](http://www.greenfoot.org/scenarios/16247)
 
 ### To do:
 - [X] Playable Version - 2016/03/20 :bangbang:
