@@ -49,4 +49,21 @@ public class Minesweeper extends World {
     public void endFirstPlay() {
         firstPlay = false;
     }
+
+    /*
+     * Used to print the field in the console whenever we need to test the game.
+     */
+    public void printField() {
+        System.out.println("\n");
+        for(int k = 0; k < fieldSize; k++) {
+            for(int l = 0; l < fieldSize; l++) {
+                if(field[k][l].isBomb()) {
+                    System.out.print("X ");
+                } else {
+                    System.out.print(field[k][l].getNumber() + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }
