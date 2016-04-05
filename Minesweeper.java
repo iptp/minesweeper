@@ -38,6 +38,10 @@ public class Minesweeper extends World {
         }
     }
 
+    /*
+     * Iterates over the field looking for bombs and increasing it's adjacent
+     * numbers whenever we find one bomb.
+     */
     public void updateNumbers() {
         for(int i = 0; i < fieldSize; i++) {
             for(int j = 0; j < fieldSize; j++) {
@@ -130,6 +134,9 @@ public class Minesweeper extends World {
         firstPlay = false;
     }
 
+    /*
+     * Used to print the field in the console whenever we need to test the game.
+     */
     public void printField() {
         System.out.println("\n");
         for(int k = 0; k < fieldSize; k++) {
