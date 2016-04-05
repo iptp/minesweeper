@@ -12,9 +12,6 @@ public class Minesweeper extends World {
 
     private int fieldSize;
     private int bombs;
-    private int questions;
-
-    public int hits;
     public boolean firstPlay;
 
     private Block[][] field;
@@ -27,8 +24,6 @@ public class Minesweeper extends World {
         super(WIDTH, HEIGHT, CELLSIZE, false);
 
         firstPlay = true;
-        questions = 0;
-        hits = 0;
         fieldSize = 10;
         bombs = 10;
 
@@ -43,52 +38,26 @@ public class Minesweeper extends World {
         }
     }
 
+    public void updateNumbers() {
+        for(int i = 0; i < fieldSize; i++) {
+            for(int j = 0; j < fieldSize; j++) {
+                if(field[i][j].isBomb()) {
+                    field[i][j].increaseAdjacentNumbers();
+                }
+            }
+        }
+        printField();
+    }
+
     /**
     * Check wether the user has won the game.
     */
     public void checkWin() {
-        questions = countQuestions();
-        if(questions == bombs && hits == bombs) {
-            showText("Ganhou", WIDTH/2, 2);
-            showBombs();
-            Greenfoot.stop();
-        }
-
         int unturned = countUnturned();
         if(unturned == bombs) {
             showText("Ganhou", WIDTH/2, 2);
-            showBombs();
             Greenfoot.stop();
         }
-    }
-
-    /**
-    * Used for showing the bombs location in case the user has won the game.
-    */
-    public void showBombs() {
-        for(int i = 0; i < fieldSize; i++) {
-            for(int j = 0; j < fieldSize; j++) {
-                if(field[i][j].isBomb()) {
-                    field[i][j].setBombImage();
-                }
-            }
-        }
-    }
-
-    /**
-    * Count the number of question marks in the field to see if the user
-    * has mark enough bombs to win the game.
-    */
-    public int countQuestions() {
-        int count = 0;
-        for(int i = 0; i < fieldSize; i++) {
-            for(int j = 0; j < fieldSize; j++) {
-                if(field[i][j].isQuestion()) {
-                    count++;
-                }
-            }
-        }
-        return count;
     }
 
     /**
@@ -108,106 +77,70 @@ public class Minesweeper extends World {
     }
 
     /**
-    * Update the numbers in each Block based on the number of bombs around it.
+    * Sort the location for the bombs two int[] and scrambling them to
+    * be used as positions i and j in the field matrix.
     */
-    public void updateNumbers() {
-        for(int i = 0; i < fieldSize; i++) {
-            for(int j = 0; j < fieldSize; j++) {
-                field[i][j].updateNumber();
-            }
+    public void sortBombs(int i, int j) {
+        //create and fill the 2 vectors
+        int v1[] = new int[bombs];
+        int v2[] = new int[bombs];
+        for(int k = 0; k < bombs; k++) {
+            v1[k] = k;
+            v2[k] = k;
+        }
+
+        //scramble them using random values for the positions
+        for(int k = 0; k < bombs; k++) {
+            int r = Greenfoot.getRandomNumber(bombs);
+            int aux = v1[r];
+            v1[r] = v1[k];
+            v1[k] = aux;
+
+            r = Greenfoot.getRandomNumber(bombs);
+            aux = v2[r];
+            v2[r] = v2[k];
+            v2[k] = aux;
+        }
+
+        //put bombs in their positions
+        for(int k = 0; k < bombs; k++) {
+            int x = v1[k];
+            int y = v2[k];
+            field[x][y].setAsBomb();
+        }
+        checkAndRemoveBomb(i, j);
+        printField();
+    }
+
+    public void checkAndRemoveBomb(int i, int j) {
+        if(field[i][j].isBomb()) {
+            field[i][j].removeBomb();
         }
     }
 
-    /**
-    * Sort the location for the bombs in the field after the first play
-    * from the user.
-    */
-    public void sortBombs(int i, int j) {
-        int v1[] = new int[bombs];
-        int v2[] = new int[bombs];
+    public int getFieldSize() {
+        return fieldSize;
+    }
 
-        sortBombLocations(v1, v2);
-        if(field[i][j].isBomb()) {
-            field[i][j].removeBomb();
-            sortOneBomb();
-        }
-        
-        /*
-        System.out.println("\nv1: ");
-        for(int k = 0; k < bombs; k++) {
-            System.out.print(String.valueOf(v1[k]) + " ");
-        }
-        
-        System.out.println("\nv2: ");
-        for(int k = 0; k < bombs; k++) {
-            System.out.print(String.valueOf(v2[k]) + " ");
-        }
-        
+    public boolean isFirstPlay() {
+        return firstPlay;
+    }
+
+    public void endFirstPlay() {
+        firstPlay = false;
+    }
+
+    public void printField() {
         System.out.println("\n");
         for(int k = 0; k < fieldSize; k++) {
             for(int l = 0; l < fieldSize; l++) {
                 if(field[k][l].isBomb()) {
                     System.out.print("X ");
                 } else {
-                    System.out.print("- ");
+                    System.out.print(field[k][l].getNumber() + " ");
                 }
             }
             System.out.println();
         }
-        */
-    }
-
-    /**
-    * Sort the location for the bombs two int[] and scrambling them to
-    * be used as positions i and j in the field matrix.
-    */
-    public void sortBombLocations(int v1[], int v2[]) {
-        for(int i = 0, j = 0; i < bombs; i++, j++) {
-            if(j == fieldSize) j = 0;
-            v1[i] = j;
-        }
-
-        for(int i = 0; i < bombs; i++) {
-            int r = Greenfoot.getRandomNumber(bombs);
-            int aux = v1[i];
-            v1[i] = v1[r];
-            v1[r] = aux;
-        }
-
-        for(int i = 0, j = 0; i < bombs; i++, j++) {
-            if(j == fieldSize) j = 0;
-            v2[i] = j;
-        }
-
-        for(int i = 0; i < bombs; i++) {
-            int r = Greenfoot.getRandomNumber(bombs);
-            int aux = v2[i];
-            v2[i] = v2[r];
-            v2[r] = aux;
-        }
-
-        for(int i = 0; i < bombs; i++) {
-            field[v1[i]][v2[i]].setAsBomb();
-        }
-    }
-
-    /**
-    * Sort the location for one single bomb in case them
-    * {@link sortBombLocations(int v1[], int v2[]) sortBombLocations} method
-    * has sorted the position in the field where the user has done it's
-    * first play.
-    */
-    public void sortOneBomb() {
-        int r1, r2;
-        do {
-            r1 = Greenfoot.getRandomNumber(fieldSize);
-            r2 = Greenfoot.getRandomNumber(fieldSize);
-        } while(!field[r1][r2].isBomb());
-
-        field[r1][r2].setAsBomb();
-    }
-
-    public int getFieldSize() {
-        return fieldSize;
     }
 }
