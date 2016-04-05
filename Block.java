@@ -7,8 +7,7 @@ import java.awt.Color;
  * This is the class used for each block in the field.
  * Each block has a number associated with itself that means the number of
  * bombs around and position i and j representing it's position in the field.
- * Each block can also be a bomb, be turned to show the number, or have a
- * question marker represented by the star image.
+ * Each block can also be a bomb or be turned to show it's number.
  *
  * The Block class is responsible to check if the user is clicking in this
  * current block and handling the play from the user accordingly.
@@ -41,8 +40,10 @@ public class Block extends Actor
     }
 
     /**
-     * Check to see if the user is clicking this block and sort the bombs in
-     * the field in case it's the first play of the game.
+     * Check to see if the user is clicking this block and handle the
+     * click by calling the world's methods for sorting the bombs after
+     * the first play, updating the numbers, turning the block
+     * and checking if the user won the game.
      */
     public void act() {
         if(Greenfoot.mouseClicked(this)) {
@@ -59,6 +60,11 @@ public class Block extends Actor
         }
     }
 
+    /**
+    * Turn this block after checking if it's not a bomb.
+    * If the block number equals 0, recursively turns all adjacent blocks
+    * until any block number different than 0 is found.
+    */
     public void turn() {
         if(this.bomb) {
             setImage(bombImage);
@@ -86,6 +92,9 @@ public class Block extends Actor
         }
     }
 
+    /**
+    * Increase the number of all adjacent blocks.
+    */
     public void increaseAdjacentNumbers() {
         List<Block> neighbours = getNeighbours(1, true, Block.class);
         for(Block b : neighbours) {
