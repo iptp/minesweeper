@@ -5,13 +5,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * This is the class used for each block in the field.
  * Each block has a number associated with itself that means the number of
  * bombs around and position i and j representing it's position in the field.
- * Each block can also be a bomb or be turned to show it's number.
+ * Each block can also be a bomb or be flipped to show it's number.
  *
  * The Block class is responsible to check if the user is clicking in this
  * current block and handling the play from the user accordingly.
  */
-public class Block extends Actor
-{
+public class Block extends Actor {
     private Minesweeper game;
     private GreenfootImage blockImage;
     private GreenfootImage bombImage;
