@@ -36,7 +36,7 @@ public class Block extends Actor
     }
 
     /**
-     * Check to see if the user is clicking this block and sort the bombs in
+     * Check to see if the user is clicking this block and set the bombs in
      * the field in case it's the first play of the game.
      */
     public void act() {
@@ -45,7 +45,7 @@ public class Block extends Actor
             // 1 is left button
             if(mouse == 1) {
                 if(game.isFirstPlay()) {
-                    game.sortBombs(i, j);
+                    game.setBombs(i, j);
                     game.endFirstPlay();
                 } else {
                     //to do...

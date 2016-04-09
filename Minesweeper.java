@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Minesweeper Class
- * This class is responsible for creating the world, sorting the
+ * This class is responsible for creating the world, setting the
  * initial position of the bombs and checking if the user has won the game.
  */
 public class Minesweeper extends World {
@@ -38,7 +38,7 @@ public class Minesweeper extends World {
         }
     }
 
-    public void sortBombs(int i, int j) {
+    public void setBombs(int i, int j) {
         //create and fill the 2 vectors
         int v1[] = new int[bombs];
         int v2[] = new int[bombs];
@@ -53,13 +53,13 @@ public class Minesweeper extends World {
             int aux = v1[r];
             v1[r] = v1[k];
             v1[k] = aux;
-            
+
             r = Greenfoot.getRandomNumber(bombs);
             aux = v2[r];
             v2[r] = v2[k];
             v2[k] = aux;
         }
-        
+
         //put bombs in their positions
         for(int k = 0; k < bombs; k++) {
             int x = v1[k];
@@ -87,7 +87,7 @@ public class Minesweeper extends World {
     public void endFirstPlay() {
         firstPlay = false;
     }
-    
+
     public void printField() {
         System.out.println("\n");
         for(int k = 0; k < fieldSize; k++) {
