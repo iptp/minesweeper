@@ -1,14 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
-import java.awt.Color;
 
 /**
  * Block Class
  * This is the class used for each block in the field.
  * Each block has a number associated with itself that means the number of
  * bombs around and position i and j representing it's position in the field.
- * Each block can also be a bomb, be turned to show the number, or have a
- * question marker represented by the star image.
+ * Each block can also be a bomb or be flipped to show it's number.
  *
  * The Block class is responsible to check if the user is clicking in this
  * current block and handling the play from the user accordingly.
@@ -49,20 +46,11 @@ public class Block extends Actor
             if(mouse == 1) {
                 if(game.isFirstPlay()) {
                     game.sortBombs(i, j);
-                    game.updateNumbers();
                     game.endFirstPlay();
+                } else {
+                    //to do...
                 }
             }
-        }
-    }
-    
-    /**
-     * Increase the number of all adjacent blocks.
-     */
-    public void increaseAdjacentNumbers() {
-        List<Block> neighbours = getNeighbours(1, true, Block.class);
-        for(Block b : neighbours) {
-            b.increaseNumber();
         }
     }
 
@@ -89,17 +77,5 @@ public class Block extends Actor
 
     public void setBombImage() {
         setImage(bombImage);
-    }
-
-    public int getNumber() {
-        return this.number;
-    }
-
-    public void increaseNumber() {
-        this.number++;
-    }
-
-    public boolean isTurned() {
-        return this.turned;
     }
 }
