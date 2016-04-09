@@ -50,7 +50,7 @@ public class Block extends Actor
 
     /**
      * Check to see if the user is clicking this block and handle the
-     * click by calling the world's methods for sorting the bombs after
+     * click by calling the world's methods for setting the bombs after
      * the first play, updating the numbers, fliping the block, displaying
      * the question marker and checking if the user won the game.
      */
@@ -60,7 +60,7 @@ public class Block extends Actor
              // 1 is left button
              if(mouse == 1) {
                  if(game.isFirstPlay()) {
-                     game.sortBombs(i, j);
+                     game.setBombs(i, j);
                      game.updateNumbers();
                      game.endFirstPlay();
                  }
