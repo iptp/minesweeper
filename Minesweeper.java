@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Minesweeper Class
- * This class is responsible for creating the world, sorting the
+ * This class is responsible for creating the world, setting the
  * initial position of the bombs and checking if the user has won the game.
  */
 public class Minesweeper extends World {
