@@ -57,22 +57,22 @@ public class Minesweeper extends World {
     * Check wether the user has won the game.
     */
     public void checkWin() {
-        int unturned = countUnturned();
-        if(unturned == bombs) {
+        int unflipped = countUnflipped();
+        if(unflipped == bombs) {
             showText("You won!", WIDTH/2, 2);
             Greenfoot.stop();
         }
     }
 
     /**
-    * Count the number of field Blocks that are unturned to see if the user
+    * Count the number of field Blocks that are unflipped to see if the user
     * has won the game.
     */
-    public int countUnturned() {
+    public int countUnflipped() {
         int count = 0;
         for(int i = 0; i < fieldSize; i++) {
             for(int j = 0; j < fieldSize; j++) {
-                if(!field[i][j].isTurned()) {
+                if(!field[i][j].isFlipped()) {
                     count++;
                 }
             }

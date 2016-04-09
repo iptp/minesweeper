@@ -7,7 +7,7 @@ import java.awt.Color;
  * This is the class used for each block in the field.
  * Each block has a number associated with itself that means the number of
  * bombs around and position i and j representing it's position in the field.
- * Each block can also be a bomb or be turned to show it's number.
+ * Each block can also be a bomb or be flipped to show it's number.
  *
  * The Block class is responsible to check if the user is clicking in this
  * current block and handling the play from the user accordingly.
@@ -18,7 +18,7 @@ public class Block extends Actor
     private GreenfootImage blockImage;
     private GreenfootImage bombImage;
     private boolean bomb;
-    private boolean turned;
+    private boolean flipped;
     private int number;
     private int i, j;
 
@@ -31,7 +31,7 @@ public class Block extends Actor
         bombImage = new GreenfootImage("Bomb.png");
 
         bomb = false;
-        turned = false;
+        flipped = false;
         number = 0;
 
         this.i = i;
@@ -51,7 +51,7 @@ public class Block extends Actor
     /**
      * Check to see if the user is clicking this block and handle the
      * click by calling the world's methods for sorting the bombs after
-     * the first play, updating the numbers, turning the block, displaying
+     * the first play, updating the numbers, fliping the block, displaying
      * the question marker and checking if the user won the game.
      */
      public void act() {
@@ -64,16 +64,16 @@ public class Block extends Actor
                      game.updateNumbers();
                      game.endFirstPlay();
                  }
-                 turn();
+                 flip();
              }
              game.checkWin();
          }
      }
 
     /**
-    * Turn this block after checking if it's not a bomb.
+    * Flip this block after checking if it's not a bomb.
     */
-    public void turn() {
+    public void flip() {
         if(this.bomb) {
             setImage(bombImage);
             game.showText("Game over!", Minesweeper.WIDTH/2, 2);
@@ -86,14 +86,14 @@ public class Block extends Actor
             GreenfootImage numberImg = new GreenfootImage(n, game.CELLSIZE, Color.BLACK, bg);
             setImage(numberImg);
 
-            this.turned = true;
+            this.flipped = true;
 
             if(this.number == 0){
-                //turn adjacent blocks
+                //flip adjacent blocks
                 List<Block> neighbours = getNeighbours(1, true, Block.class);
                 for(Block b : neighbours) {
-                    if(!b.isTurned()) {
-                        b.turn();
+                    if(!b.isFlipped()) {
+                        b.flip();
                     }
                 }
             }
@@ -122,8 +122,8 @@ public class Block extends Actor
         return this.bomb;
     }
 
-    public boolean isTurned() {
-        return this.turned;
+    public boolean isFlipped() {
+        return this.flipped;
     }
 
     public int getNumber() {
